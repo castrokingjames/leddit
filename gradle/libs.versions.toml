@@ -1,0 +1,53 @@
+[versions]
+applicationId = "io.github.castrokingjames.leddit"
+agp = "8.0.1"
+kotlin = "1.8.22"
+compileSdk = "33"
+minSdk = "23"
+targetSdk = "33"
+sqldelight = "1.5.5"
+dagger = "2.46.1"
+retrofit = "2.9.0"
+okhttp = "4.9.0"
+room = "2.5.1"
+cc = "1.4.8"
+compose = "1.4.3"
+mavericks = "3.0.2"
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+android-lint = { id = "com.android.lint", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+spotless = "com.diffplug.spotless:6.19.0"
+
+[libraries]
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlin-coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1"
+
+androidx-activity-compose = "androidx.activity:activity-compose:1.5.1"
+androidx-appcompat = "androidx.appcompat:appcompat:1.4.2"
+androidx-lifecycle-runtime-ktx = "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+androidx-splashscreen = "androidx.core:core-splashscreen:1.0.0"
+
+androidx-navigation-common-ktx = "androidx.navigation:navigation-common-ktx:2.3.5"
+androidx-navigation-compose = "androidx.navigation:navigation-compose:2.5.1"
+
+androidx-compose-ui = "androidx.compose.ui:ui:1.2.1"
+androidx-compose-ui-test-manifest = "androidx.compose.ui:ui-test-manifest:1.2.1"
+androidx-compose-ui-tooling = "androidx.compose.ui:ui-tooling:1.2.1"
+androidx-compose-ui-tooling-preview = "androidx.compose.ui:ui-tooling-preview:1.2.1"
+androidx-compose-material = "androidx.compose.material:material:1.4.3"
+androidx-compose-material3 = "androidx.compose.material3:material3:1.1.1"
+
+javax-inject =  "javax.inject:javax.inject:1"
+
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
+dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
+dagger-android = { module = "com.google.dagger:dagger-android-support", version.ref = "dagger" }
+dagger-android-processor = { module = "com.google.dagger:dagger-android-processor", version.ref = "dagger" }
+
+square-retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
+square-converter-gson = "com.squareup.retrofit2:converter-gson:2.9.0"
+square-interceptor-logging = "com.squareup.okhttp3:logging-interceptor:4.10.0"

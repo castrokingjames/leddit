@@ -1,0 +1,18 @@
+plugins {
+    id "kotlin"
+    alias(libs.plugins.android.lint)
+    alias(libs.plugins.kotlin.kapt)
+}
+
+dependencies {
+    implementation libs.dagger
+
+    implementation projects.data
+    implementation projects.datasources.remote
+    implementation projects.manager
+    implementation projects.managers.simpleDispatcher
+    implementation projects.managers.simpleSession
+
+    kapt libs.dagger.compiler
+    kapt libs.dagger.android.processor
+}

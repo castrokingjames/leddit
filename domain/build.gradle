@@ -1,0 +1,9 @@
+plugins {
+    id "kotlin"
+    alias(libs.plugins.android.lint)
+}
+
+dependencies {
+    implementation libs.javax.inject
+    implementation projects.manager
+}

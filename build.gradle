@@ -1,0 +1,87 @@
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.android.lint) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.kapt) apply false
+    alias(libs.plugins.spotless)
+}
+
+subprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    apply from: rootProject.file("spotless/spotless.gradle")
+
+    plugins.withId(rootProject.libs.plugins.kotlin.kapt.get().pluginId) {
+        kapt.correctErrorTypes = true
+    }
+
+    plugins.withId(rootProject.libs.plugins.android.library.get().pluginId) {
+        setupAndroidProject(project)
+    }
+
+    plugins.withId(rootProject.libs.plugins.android.application.get().pluginId) {
+        setupAndroidProject(project)
+    }
+
+    plugins.withId("kotlin") {
+        setupKotlinProject(project)
+    }
+}
+
+def setupAndroidProject(Project project) {
+    project.android {
+        compileSdk libs.versions.compileSdk.get() as int
+
+        defaultConfig {
+            minSdk libs.versions.minSdk.get() as int
+            targetSdk libs.versions.targetSdk.get() as int
+        }
+
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_17
+            targetCompatibility JavaVersion.VERSION_17
+        }
+
+        sourceSets {
+            main.java.srcDirs += "src/main/kotlin"
+            main.java.srcDirs += [file("$buildDir/generated/source/kapt/main")]
+            test.java.srcDirs += "src/test/kotlin"
+            androidTest.java.srcDirs += "src/androidTest/kotlin"
+        }
+    }
+
+    project.dependencies {
+        implementation libs.kotlin.stdlib
+        implementation libs.kotlin.coroutines
+        implementation projects.common
+
+        if (project.name != "common") {
+            implementation projects.ui.common
+        }
+    }
+}
+
+def setupKotlinProject(Project project) {
+    project.sourceSets {
+        main.java.srcDirs += "src/main/kotlin"
+        main.java.srcDirs += [file("$buildDir/generated/source/kapt/main")]
+        test.java.srcDirs += "src/test/kotlin"
+    }
+
+    project.compileKotlin {
+        kotlinOptions.jvmTarget = JavaVersion.VERSION_17
+    }
+
+    project.dependencies {
+        implementation libs.kotlin.stdlib
+        implementation libs.kotlin.coroutines
+
+        if (project.name != "common") {
+            implementation projects.common
+        }
+    }
+}

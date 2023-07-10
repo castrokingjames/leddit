@@ -1,0 +1,13 @@
+plugins {
+    id "kotlin"
+    alias(libs.plugins.android.lint)
+}
+
+dependencies {
+    implementation libs.javax.inject
+    api libs.square.retrofit
+    api libs.square.converter.gson
+    api libs.square.interceptor.logging
+
+    implementation projects.data
+}

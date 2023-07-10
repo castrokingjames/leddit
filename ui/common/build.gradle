@@ -1,0 +1,34 @@
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+}
+
+android {
+    namespace "${libs.versions.applicationId.get()}.ui"
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.cc.get()
+    }
+}
+
+dependencies {
+    implementation libs.androidx.activity.compose
+
+    api libs.androidx.appcompat
+    api libs.androidx.splashscreen
+
+    api libs.androidx.navigation.compose
+    api libs.androidx.navigation.common.ktx
+
+    api libs.androidx.compose.ui
+    api libs.androidx.compose.ui.tooling.preview
+    api libs.androidx.compose.material3
+
+    debugApi libs.androidx.compose.ui.tooling
+    debugApi libs.androidx.compose.ui.test.manifest
+}

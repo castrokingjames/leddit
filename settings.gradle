@@ -1,0 +1,38 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+
+plugins {
+    id "com.gradle.enterprise" version "3.11.1"
+}
+
+gradleEnterprise {
+    buildScan {
+        termsOfServiceUrl = "https://gradle.com/terms-of-service"
+        termsOfServiceAgree = "yes"
+        publishAlways()
+    }
+}
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+rootProject.name = "leddit"
+
+include ":common"
+include ":domain"
+include ":data"
+include ":datasources:remote"
+
+include ":di:injector"
+include ":di:module"
+include ":di:scope"
+
+include ":ui:common"
+
+include ":manager"
+include ":managers:simple-session"
+include ":managers:simple-dispatcher"
